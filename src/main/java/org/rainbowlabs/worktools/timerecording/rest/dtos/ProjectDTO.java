@@ -1,14 +1,10 @@
-package org.rainbowlabs.worktools.timerecording.domain.models;
+package org.rainbowlabs.worktools.timerecording.rest.dtos;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+public class ProjectDTO {
 
-@Entity
-public class Project {
+  public ProjectDTO() {
+  }
 
-  public Project() {}
-
-  @Id
   private int id;
   private String name;
 
@@ -28,3 +24,4 @@ public class Project {
     this.name = name;
   }
 }
+

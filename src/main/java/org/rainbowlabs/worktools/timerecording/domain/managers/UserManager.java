@@ -7,16 +7,17 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Component
-public class UserManger {
+public class UserManager {
 
-  private static final Logger log = LoggerFactory.getLogger(UserManger.class);
+  private static final Logger log = LoggerFactory.getLogger(UserManager.class);
 
   private final UserRepository userRepository;
 
-  public UserManger(UserRepository userRepository) {
+  public UserManager(UserRepository userRepository) {
     this.userRepository = userRepository;
   }
 
@@ -31,7 +32,26 @@ public class UserManger {
   }
 
   public Worker createWorker(String name) {
-    Worker worker = Worker.builder().name(name).workLogs(new ArrayList<>()).build();
+    Worker worker = new Worker();
+    worker.setName(name);
+    worker.setWorkLogs(new ArrayList<>());
     return userRepository.save(worker);
+  }
+
+  public void updateWorker(Worker worker) {
+    Optional<Worker> optionalWorker = userRepository.findById(worker.getId());
+    if (optionalWorker.isEmpty()) {
+      log.error("User not found");
+    }
+    worker.getWorkLogs().addAll(optionalWorker.get().getWorkLogs());
+    userRepository.save(worker);
+  }
+
+  public List<Worker> getAllUsers() {
+    return userRepository.findAll();
+  }
+
+  public List<Worker> findAllUsersByName(String name) {
+    return userRepository.findAllByName(name);
   }
 }
