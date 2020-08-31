@@ -1,0 +1,16 @@
+spring:
+  profiles: default
+  application:
+    name: TimeRecording Backend
+  server:
+    port: 7645
+  datasource:
+    url: jdbc:postgresql://localhost:5432/worklog
+    username: worklog
+    password: worklog
+    driver-class-name: org.postgresql.Driver
+    initialization-mode: always
+  jpa:
+    hibernate:
+      generate-ddl: true
+      ddl-auto: update
