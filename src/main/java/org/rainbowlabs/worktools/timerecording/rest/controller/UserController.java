@@ -3,7 +3,8 @@ package org.rainbowlabs.worktools.timerecording.rest.controller;
 import lombok.AllArgsConstructor;
 import org.rainbowlabs.worktools.timerecording.domain.managers.UserManger;
 import org.rainbowlabs.worktools.timerecording.domain.models.Worker;
-import org.rainbowlabs.worktools.timerecording.rest.dtos.User;
+import org.rainbowlabs.worktools.timerecording.mapper.UserMapper;
+import org.rainbowlabs.worktools.timerecording.rest.dtos.UserDTO;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -30,18 +31,18 @@ public class UserController {
   }
 
   @PostMapping
-  public ResponseEntity< URI > createUser(@RequestBody User user) {
-    Worker savedUser = userManger.createWorker(user.getName());
+  public ResponseEntity< URI > createUser(@RequestBody UserDTO userDTO) {
+    UserDTO savedUser = UserMapper.INSTANCE.workerToUserDTO(userManger.createWorker(userDTO.getName()));
     return ResponseEntity.created(URI.create("/user/2")).build();
   }
 
   @GetMapping
-  public ResponseEntity<List<User>> getAllUsers() {
+  public ResponseEntity<List<UserDTO>> getAllUsers() {
     return ResponseEntity.ok(new ArrayList<>());
   }
 
   @GetMapping("/{name}")
-  public ResponseEntity<List<User>> getAllUsersByName(@PathVariable String name) {
+  public ResponseEntity<List<UserDTO>> getAllUsersByName(@PathVariable String name) {
     return ResponseEntity.ok(new ArrayList<>());
   }
 }

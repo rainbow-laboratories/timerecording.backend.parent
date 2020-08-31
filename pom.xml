@@ -49,6 +49,14 @@
             <version>1.8.0-beta4</version>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/org.mapstruct/mapstruct -->
+        <dependency>
+            <groupId>org.mapstruct</groupId>
+            <artifactId>mapstruct</artifactId>
+            <version>1.4.0.Beta3</version>
+        </dependency>
+
+
     </dependencies>
 
     <build>
