@@ -1,21 +1,21 @@
 package org.rainbowlabs.worktools.timerecording.domain.models;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
 
 @Entity
-@Data
-@Builder
-@AllArgsConstructor
-@NoArgsConstructor
 public class WorkLog {
+
+  public WorkLog(int id, int workLogInHrs, Project project) {
+    this.id = id;
+    this.workLogInHrs = workLogInHrs;
+    this.project = project;
+  }
+
+  public WorkLog() {
+  }
 
   @Id
   @GeneratedValue
@@ -25,4 +25,28 @@ public class WorkLog {
 
   @OneToOne
   private Project project;
+
+  public int getId() {
+    return id;
+  }
+
+  public void setId(int id) {
+    this.id = id;
+  }
+
+  public int getWorkLogInHrs() {
+    return workLogInHrs;
+  }
+
+  public void setWorkLogInHrs(int workLogInHrs) {
+    this.workLogInHrs = workLogInHrs;
+  }
+
+  public Project getProject() {
+    return project;
+  }
+
+  public void setProject(Project project) {
+    this.project = project;
+  }
 }
