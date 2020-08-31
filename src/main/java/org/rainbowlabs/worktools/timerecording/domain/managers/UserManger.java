@@ -6,6 +6,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
+import java.util.ArrayList;
 import java.util.Optional;
 
 @Component
@@ -27,5 +28,10 @@ public class UserManger {
       log.error("requested user wasn't present");
       return null;
     }
+  }
+
+  public Worker createWorker(String name) {
+    Worker worker = Worker.builder().name(name).workLogs(new ArrayList<>()).build();
+    return userRepository.save(worker);
   }
 }

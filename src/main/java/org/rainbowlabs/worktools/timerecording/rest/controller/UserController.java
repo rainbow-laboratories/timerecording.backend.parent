@@ -31,6 +31,7 @@ public class UserController {
 
   @PostMapping
   public ResponseEntity< URI > createUser(@RequestBody User user) {
+    Worker savedUser = userManger.createWorker(user.getName());
     return ResponseEntity.created(URI.create("/user/2")).build();
   }
 
